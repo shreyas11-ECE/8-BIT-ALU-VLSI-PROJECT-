@@ -1,0 +1,52 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: SHREYAS
+// 
+// Create Date: 08.07.2025 07:25:30
+// Design Name: 
+// Module Name: alu_8bit
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module alu_4bit (a,b,clk,rst,en,opcode,out,zero);
+input [3:0] a,b;
+input clk,en,rst;
+input[2:0] opcode;
+output reg [5:0] out;
+output zero;
+assign zero = (out == 4'b0000);
+reg [3:0] temp_result;
+always @ (*) 
+begin
+case(opcode)
+3'b000:temp_result=a+b;
+3'b001:temp_result=a-b;
+3'b010:temp_result=a*b;
+3'b011:temp_result=a<<b[2:0];
+3'b100:temp_result=a>>b[2:0];
+3'b101:temp_result=a&b;
+3'b110:temp_result=a|b;
+3'b111:temp_result=a^b;
+default:temp_result=3'b0;
+endcase
+end
+always @(posedge clk or posedge rst)
+begin
+if (rst)
+out<=6'b0;
+else if (en)
+out<=temp_result;
+end 
+endmodule 
