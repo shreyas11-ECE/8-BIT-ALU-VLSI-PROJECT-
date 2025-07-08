@@ -1,0 +1,12 @@
+padgroup output permute
+twpin_zero  fixed
+twpin_out[7]  fixed
+twpin_out[6]  fixed
+twpin_out[5]  fixed
+twpin_out[4]  fixed
+twpin_out[3]  fixed
+twpin_out[2]  fixed
+twpin_out[1]  fixed
+twpin_out[0]  fixed
+restrict side R
+
